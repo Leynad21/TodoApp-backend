@@ -14,7 +14,7 @@ class TodoList(APIView):
 
 
     def get(self, request):
-        todos = models.Todo.objects.all()
+        todos = models.Todo.objects.all().order_by('created')
         serializer = serializers.TodoSerializer(todos, many=True)
         return Response(serializer.data)
     
